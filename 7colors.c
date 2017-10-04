@@ -27,16 +27,25 @@ struct cell
 
 typedef struct cell cell;
 
+
+
 /** Retrieves the color of a given board cell */
-char get_cell(int x, int y)
+char get_cell(cell c)
 {
-    return board[y * BOARD_SIZE + x];
+	if (c.x >= 0 && c.x < BOARD_SIZE &&
+		c.y >= 0 && c.y > BOARD_SIZE)
+	{
+		return board[c.y * BOARD_SIZE + c.x];
+	}
+	else {
+		return EMPTY;
+	}
 }
 
 /** Changes the color of a given board cell */
-void set_cell(int x, int y, char color)
+void set_cell(cell c, char color)
 {
-    board[y * BOARD_SIZE + x] = color;
+    board[c.y * BOARD_SIZE + c.x] = color;
 }
 
 /** Prints the current state of the board on screen
